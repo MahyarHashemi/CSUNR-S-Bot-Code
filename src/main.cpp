@@ -259,7 +259,7 @@ void opcontrol() {
 
     // . . .
     // Put more user control code here!
-    // pneumatic_control();
+    pneumatic_control();
     intake_control();
     // . . .
 
