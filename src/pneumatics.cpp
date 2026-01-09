@@ -43,19 +43,19 @@ void pneumatic_control(){
     }
 
 
-    if (master.get_digital(DIGITAL_L1)){
-        outtake_state = false;
-    }
-    else{
-        outtake_state = true;
-    }
+    // if (master.get_digital(DIGITAL_L1)){
+    //     outtake_state = false;
+    // }
+    // else{
+    //     outtake_state = true;
+    // }
 
-    if (master.get_digital(DIGITAL_L2)){
-        angle_state = false;
-    }
-    else{
-        angle_state = true;
-    }
+    // if (master.get_digital(DIGITAL_L2)){
+    //     angle_state = false;
+    // }
+    // else{
+    //     angle_state = true;
+    // }
 
 
     if (angle_state){
@@ -65,9 +65,9 @@ void pneumatic_control(){
         angle_up();
     }
 
-    // if (master.get_digital_new_press(DIGITAL_L2)){
-    //     angle_state = !angle_state;
-    // }
+    if (master.get_digital_new_press(DIGITAL_L2)){
+        angle_state = !angle_state;
+    }
 
 
     if (outtake_state){
@@ -77,7 +77,7 @@ void pneumatic_control(){
         outtake_up();
     }
 
-    // if (master.get_digital_new_press(DIGITAL_L1)){
-    //     outtake_state = !outtake_state;
-    // }
+    if (master.get_digital_new_press(DIGITAL_L1)){
+        outtake_state = !outtake_state;
+    }
 }
