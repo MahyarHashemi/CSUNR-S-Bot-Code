@@ -596,7 +596,7 @@ void mid_match_auton(){
 
   intake_speed(0);
 
-  chassis.pid_drive_set(-46_in, 90);
+  chassis.pid_drive_set(-43.5_in, 90);
   chassis.pid_wait();
 
   chassis.pid_turn_set(0_deg, 80);
@@ -635,6 +635,19 @@ void mid_match_auton(){
   chassis.pid_wait();
   
   pros::delay(2000);
+
+  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-4_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  pros::delay(750);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+
+  pros::delay(1000);
 
   chassis.pid_drive_set(10_in, 90);
   chassis.pid_wait();

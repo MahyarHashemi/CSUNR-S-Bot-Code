@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Skills",
+    "project_name": "Sharona",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -424,8 +424,8 @@
       }
     },
     "upload_options": {
-      "description": "We're S'ed Up",
-      "slot": 2,
+      "description": "My Sharona",
+      "slot": 1,
       "icon": "clawbot"
     },
     "use_early_access": false
