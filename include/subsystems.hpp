@@ -9,7 +9,8 @@ extern Drive chassis;
 
 inline ez::Piston rake('A');
 inline ez::Piston angle('B');
-inline ez::Piston outtake('C');
+inline ez::Piston outtake('D');
+inline ez::Piston descore('E');
 
 inline pros::MotorGroup top_intake({-12, 17});
 inline pros::MotorGroup bottom_intake({-16, 11});

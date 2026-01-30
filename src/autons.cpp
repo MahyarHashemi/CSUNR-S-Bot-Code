@@ -536,6 +536,8 @@ void match_auton(){
 
 void mid_match_auton(){
   // y = -50, x = 18, theta = 90
+
+  //Reset of all sensors and initialization of starting position/heading
   chassis.drive_imu_reset();
   chassis.pid_targets_reset();
   chassis.drive_sensor_reset();
@@ -546,59 +548,88 @@ void mid_match_auton(){
   // chassis.pid_odom_ptp_set({{-50_in, -50_in, 271_deg}, fwd, 75}, true);
   // chassis.pid_wait();
 
+  //Drive forward to match loader
   chassis.pid_drive_set(34_in, 75, true);
   chassis.pid_wait();
 
+  //Turn to face rake to match loader
   chassis.pid_turn_set(0_deg, 60);
   chassis.pid_wait();
 
+  //Drive away from match loader for windup
   chassis.pid_drive_set(5_in, DRIVE_SPEED);
   chassis.pid_wait();
 
+  //Drop rake mech, bring down block cover, and start running intake
   rake_down();
   outtake_down();
   intake_speed(127);
   // outtake_speed(127);
 
+  //Drive backward into match loader
   chassis.pid_drive_set(-24_in, 60);
   chassis.pid_wait();
 
   pros::delay(100);
 
+  //Drive further into match loader to fully seat rake in
   chassis.pid_drive_set(-2_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
   pros::delay(100);
 
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+
+  //Perform shimmy to dislodge any jammed blocks in match loader
   chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  chassis.pid_drive_set(1_in, DRIVE_SPEED, false);
   chassis.pid_wait();
   chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
   pros::delay(800);
 
+  //Drive out of match loader
   chassis.pid_drive_set(10_in, DRIVE_SPEED);
   chassis.pid_wait();
 
+  //Bring up rake mech
   rake_up();
   
-  chassis.pid_turn_set(43_deg, 70);
+  //Turn to face mid goals
+  //Was 70 for speed
+  chassis.pid_turn_set(43_deg, 60);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(50_in, 90);
+  //Drive towards upper mid goal
+  //Was 90 for speed
+  chassis.pid_drive_set(50_in, 70);
   chassis.pid_wait();
 
+  //Drive back to allow for some extra room for error
   chassis.pid_drive_set(-1.5_in, 50);
   chassis.pid_wait();
 
+  //Lift up ball cover and wait 2 seconds
+  //Was 1 second for time
   outtake_up();
-  pros::delay(1000);
+  pros::delay(2000);
 
-  intake_speed(0);
+///////////////////////////////////////////////////
+  //Stop intake
+  // intake_speed(0);
+///////////////////////////////////////////////////
 
-  chassis.pid_drive_set(-43.5_in, 90);
+  //Drive back in front of match loader
+  chassis.pid_drive_set(-44_in, 90);
   chassis.pid_wait();
 
+  //Turn back to face match loader
   chassis.pid_turn_set(0_deg, 80);
   chassis.pid_wait();
 
@@ -606,30 +637,32 @@ void mid_match_auton(){
   intake_speed(127);
   outtake_down();
 
-  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+///////////////////////////////////////////////////
+  // chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(-15_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-15_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
 
-  pros::delay(2000);
-  rake_up();
+  // pros::delay(2000);
+  // rake_up();
 
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
 
-  // intake_speed(0);
+  // // intake_speed(0);
 
-  chassis.pid_turn_set(90_deg, 90);
-  chassis.pid_wait();
+  // chassis.pid_turn_set(90_deg, 90);
+  // chassis.pid_wait();
 
-  outtake_up();
-  pros::delay(1000);
+  // outtake_up();
+  // pros::delay(1000);
 
-  outtake_down();
-  chassis.pid_turn_set(0_deg, 80);
-  chassis.pid_wait();
-  rake_down();
+  // outtake_down();
+  // chassis.pid_turn_set(0_deg, 80);
+  // chassis.pid_wait();
+  // rake_down();
+///////////////////////////////////////////////////
 
   chassis.pid_drive_set(-12_in, 100);
   chassis.pid_wait();
@@ -646,6 +679,11 @@ void mid_match_auton(){
   intake_speed(-127);
   pros::delay(250);
   intake_speed(127);
+
+  chassis.pid_drive_set(1_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
 
   pros::delay(1000);
 

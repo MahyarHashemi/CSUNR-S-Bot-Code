@@ -5,11 +5,11 @@
 extern bool rake_state = false;
 extern bool outtake_state = false;
 extern bool angle_state = false;
+extern bool descore_state = false;
 
 void rake_down(){
     rake.set(true);
 }
-
 void rake_up(){
     rake.set(false);
 }
@@ -17,7 +17,6 @@ void rake_up(){
 void outtake_down(){
     outtake.set(false);
 }
-
 void outtake_up(){
     outtake.set(true);
 }
@@ -25,9 +24,15 @@ void outtake_up(){
 void angle_down(){
     angle.set(false);
 }
-
 void angle_up(){
     angle.set(true);
+}
+
+void descore_up(){
+    descore.set(true);
+}
+void descore_down(){
+    descore.set(false);
 }
 
 void pneumatic_control(){
@@ -40,6 +45,17 @@ void pneumatic_control(){
 
     if (master.get_digital_new_press(DIGITAL_DOWN)){
         rake_state = !rake_state;
+    }
+
+    if (master.get_digital_new_press(DIGITAL_B)){
+        descore_state = !descore_state;
+    }
+
+    if (descore_state){
+        descore_up();
+    }
+    else{
+        descore_down();
     }
 
 
