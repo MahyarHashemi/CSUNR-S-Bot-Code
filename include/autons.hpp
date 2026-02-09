@@ -20,3 +20,5 @@ void measure_offsets();
 void match_auton();
 
 void mid_match_auton();
+
+void long_mid_match_auton();

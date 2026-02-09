@@ -10,5 +10,7 @@ void outtake_down();
 void outtake_up();
 void angle_down();
 void angle_up();
+void descore_down();
+void descore_up();
 
 void pneumatic_control();

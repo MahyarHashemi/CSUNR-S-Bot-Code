@@ -60,6 +60,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
+      {"Long Then Middle Goal", long_mid_match_auton},
       {"Middle goal Match Auton", mid_match_auton},
       {"New Match Auton Code, Copy of C Bot", match_auton},
       {"Drive\n\nDrive forward and come back", drive_example},
