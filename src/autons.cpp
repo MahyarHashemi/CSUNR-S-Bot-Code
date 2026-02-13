@@ -766,8 +766,12 @@ void skills_auton(){
 
   chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
   chassis.pid_wait();
+  intake_speed(0);
   chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
   chassis.pid_wait();
+  intake_speed(-127);
+  pros::delay(125);
+  intake_speed(127);
 
   pros::delay(1500);
 
@@ -782,87 +786,90 @@ void skills_auton(){
   // chassis.pid_turn_set(1.75_deg, 70);
   // chassis.pid_wait();
 
-  chassis.pid_odom_set({{{-59.725_in, -34.27_in, 0_deg}, fwd, DRIVE_SPEED},
-                        {{-52.273_in, 47.929_in, 90_deg}, fwd, DRIVE_SPEED},
-                        {{-47_in, 29_in, 180_deg}, fwd, 75}}, true);
+  chassis.pid_odom_set({{{-61.725_in, -34.27_in, 0_deg}, fwd, DRIVE_SPEED},
+                        {{-61.273_in, 47.929_in, 90_deg}, fwd, DRIVE_SPEED},
+                        {{-42.5_in, 29_in, 180_deg}, fwd, 75}}, true);
+  chassis.pid_wait_until_index_started(1);
+  intake_speed(0);
+  chassis.pid_wait();
 
-  // chassis.pid_drive_set(17.5_in, DRIVE_SPEED);
+  chassis.pid_drive_set(5_in, 70);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-1.5_in, 60);
+  chassis.pid_wait();
+
+  // intake_speed(-127);
+  // pros::delay(250);
+
+  // outtake_up();
+  // intake_speed(127);
+  // pros::delay(500);
+  // // intake_speed(127);
+  // // outtake_speed(127);
+  // pros::delay(1500);
+  
+  // chassis.pid_drive_set(-10_in, DRIVE_SPEED);
   // chassis.pid_wait();
 
-  chassis.pid_drive_set(-1.5_in, 60);
-  chassis.pid_wait();
+  // intake_speed(0);
+  // // outtake_speed(0);
 
-  intake_speed(-127);
-  pros::delay(250);
+  // chassis.pid_turn_set(0_deg, 60);
+  // chassis.pid_wait();
 
-  outtake_up();
-  intake_speed(127);
-  pros::delay(500);
+  // rake_down();
+  // outtake_down();
   // intake_speed(127);
-  // outtake_speed(127);
-  pros::delay(1500);
-  
-  chassis.pid_drive_set(-10_in, DRIVE_SPEED);
-  chassis.pid_wait();
 
-  intake_speed(0);
-  // outtake_speed(0);
+  // chassis.pid_drive_set(7.5_in, 80);
+  // chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, 60);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-24_in, 70);
+  // chassis.pid_wait();
 
-  rake_down();
-  outtake_down();
-  intake_speed(127);
+  // chassis.pid_drive_set(-2_in, DRIVE_SPEED);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(7.5_in, 80);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
+  // chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(-24_in, 70);
-  chassis.pid_wait();
+  // //was 3000
+  // pros::delay(3000);
 
-  chassis.pid_drive_set(-2_in, DRIVE_SPEED);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(10_in, 75);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
-  chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
+  // rake_up();
+  // angle_up();
 
-  //was 3000
-  pros::delay(3000);
+  // intake_speed(-127);
+  // // outtake_speed(-127);
+  // pros::delay(100);
+  // intake_speed(0);
+  // // outtake_speed(0);
 
-  chassis.pid_drive_set(10_in, 75);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(22_in, DRIVE_SPEED);
+  // chassis.pid_wait();
 
-  rake_up();
-  angle_up();
+  // chassis.pid_drive_set(-1.5_in, 60);
+  // chassis.pid_wait();
 
-  intake_speed(-127);
-  // outtake_speed(-127);
-  pros::delay(100);
-  intake_speed(0);
-  // outtake_speed(0);
-
-  chassis.pid_drive_set(22_in, DRIVE_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-1.5_in, 60);
-  chassis.pid_wait();
-
-  outtake_up();
-  intake_speed(127);
-  // outtake_speed(127);
-  pros::delay(500);
+  // outtake_up();
   // intake_speed(127);
-  // outtake_speed(127);
-  pros::delay(1500);
+  // // outtake_speed(127);
+  // pros::delay(500);
+  // // intake_speed(127);
+  // // outtake_speed(127);
+  // pros::delay(1500);
 
-  chassis.pid_drive_set(-10_in, 80);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-10_in, 80);
+  // chassis.pid_wait();
 
-  intake_speed(0);
-  // outtake_speed(0);
+  // intake_speed(0);
+  // // outtake_speed(0);
 }
 
 

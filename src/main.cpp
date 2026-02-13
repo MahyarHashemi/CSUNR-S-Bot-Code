@@ -83,6 +83,13 @@ void initialize() {
   // Initialize chassis and auton selector
   chassis.initialize();
   ez::as::initialize();
+
+  chassis.imu.tare_pitch();
+  double imu_pitch = chassis.imu.get_pitch();
+  if (imu_pitch <= -4.00){
+    chassis.imu.set_pitch(0.00);
+  }
+  
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
 }
 
