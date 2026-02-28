@@ -46,6 +46,8 @@
 // More includes here...
 #include "autons.hpp"
 #include "subsystems.hpp"
+#include "ramsete_func.hpp"
+#include "astar.hpp"
 
 
 /**

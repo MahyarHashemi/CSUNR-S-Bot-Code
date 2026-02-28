@@ -9,21 +9,17 @@ using Coord = std::pair<int,int>;
 struct Node {
     int r, c;
     double g, h;
-
     double f() const { return g + h; }
-
     bool operator>(const Node& other) const {
         return f() > other.f();
     }
 };
 
-double heuristic(int r1, int c1, int r2, int c2)
-{
+double heuristic(int r1, int c1, int r2, int c2){
     return std::sqrt((r1 - r2)*(r1 - r2) + (c1 - c2)*(c1 - c2));
 }
 
-Grid inflateObstacles(const Grid& grid, int radius)
-{
+Grid inflateObstacles(const Grid& grid, int radius){
     Grid inflated = grid;
 
     int rows = grid.size();
@@ -52,8 +48,8 @@ std::vector<Coord> aStarPlanner(
     const Grid& originalGrid,
     int startR, int startC,
     int goalR,  int goalC,
-    int inflationRadius = 0)
-{
+    int inflationRadius = 0){
+
     Grid grid = inflateObstacles(originalGrid, inflationRadius);
 
     int rows = grid.size();

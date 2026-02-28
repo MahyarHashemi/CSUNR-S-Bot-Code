@@ -2,7 +2,6 @@
 #include "EZ-Template/drive/drive.hpp"
 #include <vector>
 #include <iostream>
-#include "ramsete_func.hpp"
 
 double x_des, 
         y_des, 
