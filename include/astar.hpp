@@ -1,10 +1,10 @@
 #pragma once
-#include "main.h"
+// #include "main.h"
 
 using Grid = std::vector<std::vector<int>>;
 using Coord = std::pair<int,int>;
 
-struct Node {
+struct Node /*{
     int r, c;
     double g, h;
 
@@ -13,7 +13,7 @@ struct Node {
     bool operator>(const Node& other) const {
         return f() > other.f();
     }
-};
+}*/;
 
 double heuristic(int r1, int c1, int r2, int c2);
 
