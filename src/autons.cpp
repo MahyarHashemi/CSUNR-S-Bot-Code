@@ -1326,7 +1326,7 @@ void long_descore_slow_match(){
   chassis.pid_drive_set(-17.5_in, DRIVE_SPEED);
   chassis.pid_wait();
 
-    pros::delay(2000);
+  pros::delay(2000);
 
   chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
   chassis.pid_wait();
@@ -1401,6 +1401,27 @@ void long_descore_slow_match(){
   chassis.pid_drive_set(20_in, 65);
   chassis.pid_wait();
 
+}
+
+void random_auton(){
+  std::random_device rd;  // a seed source for the random number engine
+  std::mt19937 gen(rd()); // mersenne_twister_engine seeded with rd()
+  std::uniform_int_distribution<> distrib(1, 4);
+
+  int auto_iter = distrib(gen);
+
+  if (auto_iter == 1){
+    long_mid_match_auton();
+  }
+  else if (auto_iter == 2){
+    mid_long_match_auton();
+  }
+  else if (auto_iter == 3){
+    long_descore_quick_match();
+  }
+  else if (auto_iter == 4){
+    long_descore_slow_match();
+  }
 }
 
 // . . .

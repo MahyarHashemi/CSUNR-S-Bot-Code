@@ -29,6 +29,10 @@ void intake_control(){
         top_intake.move(63);
         bottom_intake.move(63);
     }
+    else if (master.get_digital(DIGITAL_UP)){
+        top_intake.move(-63);
+        bottom_intake.move(-63);
+    }
     else{
         top_intake.move(0);
         bottom_intake.move(0);

@@ -28,3 +28,5 @@ void mid_long_match_auton();
 void long_descore_quick_match();
 
 void long_descore_slow_match();
+
+void random_auton();
