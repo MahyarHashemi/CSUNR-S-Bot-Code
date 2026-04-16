@@ -60,6 +60,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
+      {"New Worlds Skills Autons \n\n BRUH", worlds_skills},
       {"Randomly select one of the four match autos", random_auton},
       {"Slow Score of Long Goal and Match Loads, Then Hook In", long_descore_slow_match},
       {"Quick Score of Long Goal, Then Hook In", long_descore_quick_match},

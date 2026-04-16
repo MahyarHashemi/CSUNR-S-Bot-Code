@@ -1424,4 +1424,53 @@ void random_auton(){
   }
 }
 
+void worlds_skills(){
+  // y = -50, x = 18, theta = 90
+
+  //Reset of all sensors and initialization of starting position/heading
+  chassis.drive_imu_reset();
+  chassis.pid_targets_reset();
+  chassis.drive_sensor_reset();
+  chassis.odom_reset();
+  chassis.odom_xyt_set(0_in, -47.5_in, 0_deg);
+  pros::delay(10);
+
+  outtake_down();
+  angle_down();
+  descore_down();
+  pros::delay(500);
+
+  rake_down();
+  pros::delay(500);
+  intake_speed(127);
+  pros::delay(500);
+
+  chassis.pid_drive_set(10_in, 90);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(225_deg, 75);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-7.5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 270_deg, 35, 10);
+  rake_up();
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-30_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(120_in, 75);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(90_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-24_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  
+}
+
 // . . .
