@@ -47,7 +47,8 @@ void initialize() {
   // chassis.odom_tracker_left_set(&vert_tracker);
 
   // Configure your chassis controls
-  chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
+  // chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
+  chassis.opcontrol_curve_buttons_toggle(false);   // Enables modifying the controller curve with buttons on the joysticks
   chassis.opcontrol_drive_activebrake_set(0.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
   chassis.opcontrol_curve_default_set(0.0, 0.0);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
 
@@ -239,6 +240,17 @@ void ez_template_extras() {
   }
 }
 
+void mahyar_auton_sel_extra(){
+  if (!pros::competition::is_connected()){
+    if (master.get_digital_new_press(DIGITAL_LEFT)){
+      ez::as::page_down();
+    }
+    else if (master.get_digital_new_press(DIGITAL_RIGHT)){
+      ez::as::page_up();
+    }
+  }
+}
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -270,6 +282,7 @@ void opcontrol() {
     // Put more user control code here!
     pneumatic_control();
     intake_control();
+    mahyar_auton_sel_extra();
     // . . .
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

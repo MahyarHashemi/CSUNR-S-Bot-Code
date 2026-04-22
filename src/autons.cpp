@@ -1814,7 +1814,7 @@ void laz_long_descore_quick_match(){
   descore_up();
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-45_deg, 50);
+  chassis.pid_turn_set(45_deg, 50);
   chassis.pid_wait();
 
   chassis.pid_drive_set(13.5_in, DRIVE_SPEED, false);
@@ -1988,7 +1988,7 @@ void laz_long_descore_slow_match(){
   descore_up();
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-45_deg, 50);
+  chassis.pid_turn_set(45_deg, 50);
   chassis.pid_wait();
 
   chassis.pid_drive_set(13.5_in, DRIVE_SPEED);
