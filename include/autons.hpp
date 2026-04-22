@@ -30,3 +30,11 @@ void long_descore_quick_match();
 void long_descore_slow_match();
 
 void random_auton();
+
+void laz_long_mid_match_auton();
+
+void laz_mid_long_match_auton();
+
+void laz_long_descore_quick_match();
+
+void laz_long_descore_slow_match();
