@@ -1424,6 +1424,170 @@ void random_auton(){
   }
 }
 
+void worlds_skills_w_delay(){
+  // y = -50, x = 18, theta = 90
+
+  //Reset of all sensors and initialization of starting position/heading
+  chassis.drive_imu_reset();
+  chassis.pid_targets_reset();
+  chassis.drive_sensor_reset();
+  chassis.odom_reset();
+  chassis.odom_xyt_set(0_in, -47.5_in, 0_deg);
+  pros::delay(10);
+
+  outtake_down();
+  angle_down();
+  descore_down();
+  pros::delay(500);
+
+  rake_down();
+  pros::delay(500);
+  intake_speed(127);
+  pros::delay(500);
+
+  chassis.pid_drive_set(20_in, 90);
+  chassis.pid_wait();
+
+  pros::delay(500);
+
+  chassis.pid_turn_set(315_deg, 75);
+  chassis.pid_wait();
+
+  //Was -20.5 for dist
+  chassis.pid_drive_set(-18.75_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::LEFT_SWING, 270_deg, 45, 20);
+  rake_up();
+  chassis.pid_wait();
+
+  //Was 65 for speed and -39.5 for dist
+  chassis.pid_drive_set(-41_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  pros::delay(250);
+  intake_speed(-127);
+  pros::delay(500);
+  intake_speed(127);
+  pros::delay(250);
+
+  chassis.pid_drive_set(20_in, 75);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::LEFT_SWING, 315_deg, 45, 20);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 270_deg, 45, 20);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(30_in, 75);
+  chassis.pid_wait();
+
+  //Was 225_deg first
+  chassis.pid_swing_set(ez::RIGHT_SWING, 230_deg, 45, 20);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(90_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-35_in, DRIVE_SPEED);
+  pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED);
+  pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  pros::delay(700);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(24_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(43_deg, 75);
+  chassis.pid_wait();
+
+  //Was 46
+  chassis.pid_drive_set(45_in, 70);
+  chassis.pid_wait();
+
+  //Was -2.5 in
+  chassis.pid_drive_set(-3.5_in, 80);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  // pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  outtake_up();
+  pros::delay(500);
+  intake_speed(63);
+  //Was 3000 for delay
+  pros::delay(3500-500);
+
+  //Was not here originally
+  chassis.pid_drive_set(3_in, 20);
+  chassis.pid_wait();
+  //Was -3 originally
+  chassis.pid_drive_set(-6_in, 50);
+  chassis.pid_wait();
+
+  outtake_down();
+
+  chassis.pid_drive_set(-18_in, 80);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(0_deg, 60);
+  chassis.pid_wait();
+
+  pros::delay(5000);
+
+  intake_speed(127);
+
+  chassis.pid_drive_set(78_in, 70);
+  chassis.pid_wait();
+
+  //Was 270_deg changed to 90_deg
+  chassis.pid_turn_set(90_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-39.5_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(24_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::LEFT_SWING, 135_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 90_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(30_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(180_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  rake_down();
+  pros::delay(1000);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED);
+  chassis.pid_wait();
+  
+}
+
 void worlds_skills(){
   // y = -50, x = 18, theta = 90
 
@@ -1445,32 +1609,253 @@ void worlds_skills(){
   intake_speed(127);
   pros::delay(500);
 
-  chassis.pid_drive_set(10_in, 90);
-  chassis.pid_wait();
+  chassis.pid_drive_set(20_in, 90);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick();
 
-  chassis.pid_turn_set(225_deg, 75);
-  chassis.pid_wait();
+  pros::delay(500);
 
-  chassis.pid_drive_set(-7.5_in, DRIVE_SPEED);
-  chassis.pid_wait();
+  chassis.pid_turn_set(315_deg, 75);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick();
 
-  chassis.pid_swing_set(ez::RIGHT_SWING, 270_deg, 35, 10);
+  //Was -20.5 for dist
+  chassis.pid_drive_set(-18.75_in, DRIVE_SPEED);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick();
+
+  //Was 45 and 20 for speed respectively
+  chassis.pid_swing_set(ez::LEFT_SWING, 270_deg, 55, 30);
   rake_up();
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-30_in, DRIVE_SPEED);
+  //Was 65 for speed and -39.5 for dist
+  chassis.pid_drive_set(-41_in, DRIVE_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(120_in, 75);
+  chassis.pid_drive_set(5_in, DRIVE_SPEED);
   chassis.pid_wait();
+
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  //Was 250
+  // pros::delay(150);
+  intake_speed(-127);
+  pros::delay(500);
+  intake_speed(127);
+  pros::delay(500);
+
+  chassis.pid_drive_set(20_in, 75);
+  chassis.pid_wait();
+
+  //Was 45 and 20 for speed respectively
+  chassis.pid_swing_set(ez::LEFT_SWING, 315_deg, 55, 30);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
+
+  //Was 20 on the second speed and 45 on the first speed (Separate changes)
+  chassis.pid_swing_set(ez::RIGHT_SWING, 270_deg, 55, 10);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(30_in, 75);
+  chassis.pid_wait();
+
+  //Was 225_deg first
+  //Was 45 and 20 for the speeds
+  chassis.pid_swing_set(ez::RIGHT_SWING, 230_deg, 55, 30);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
 
   chassis.pid_turn_set(90_deg, 65);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED);
+  //Was -40 for dist
+  chassis.pid_drive_set(-45_in, DRIVE_SPEED);
+  pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
   chassis.pid_wait();
 
+  chassis.pid_drive_set(5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  //Was -5 for dist
+  chassis.pid_drive_set(-6.5_in, DRIVE_SPEED);
+  pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  pros::delay(700);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(24_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(43_deg, 75);
+  chassis.pid_wait();
+
+  //Was 46
+  chassis.pid_drive_set(47_in, 70);
+  chassis.pid_wait();
+
+  //Was -2.5 in
+  chassis.pid_drive_set(-3.5_in, 80);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  // pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  outtake_up();
+  pros::delay(500);
+  intake_speed(63);
+  //Was 3000 for delay
+  pros::delay(3500-500);
+
+  //Was not here originally
+  chassis.pid_drive_set(3_in, 20);
+  chassis.pid_wait();
+  //Was -3 originally
+  chassis.pid_drive_set(-6_in, 50);
+  chassis.pid_wait();
+
+  outtake_down();
+
+  chassis.pid_drive_set(-18_in, 80);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(90_deg, 60);
+  chassis.pid_wait();
+
+  intake_speed(127);
+
+  chassis.pid_drive_set(58_in, 70);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(0_deg, 60);
+  chassis.pid_wait();
+
+  //Was 5000 msec
+  pros::delay(1750);
+
+  chassis.pid_drive_set(76_in, 70);
+  chassis.pid_wait();
+
+
+  //Was 270_deg changed to 90_deg
+  chassis.pid_turn_set(270_deg, 65);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-39.5_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(5_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-5_in, 55);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(24_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 225_deg, 65);
+  // chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
+
+  chassis.pid_swing_set(ez::LEFT_SWING, 270_deg, 65);
+  chassis.pid_wait();
+
+  //Was 30_in
+  chassis.pid_drive_set(30.5_in, 70);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(180_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  //Was DRIVE_SPEED
+  chassis.pid_drive_set(-8_in, 50);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  rake_down();
+  pros::delay(500);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(90_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-10_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 135_deg, 40, 15);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(90_deg, 70);
+  chassis.pid_wait();
+  rake_up();
+
+  chassis.pid_drive_set(-45_in, DRIVE_SPEED);
+  chassis.pid_wait();
   
+  pros::delay(500);
+  // pros::delay(250);
+  intake_speed(-127);
+  pros::delay(250);
+  intake_speed(127);
+  pros::delay(500);
+
+  chassis.pid_drive_set(5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  //Was 24_in for dist
+  chassis.pid_drive_set(22_in, 75);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(313_deg, 75);
+  chassis.pid_wait();
+
+  //Was 46 for dist
+  chassis.pid_drive_set(-45_in, 70);
+  chassis.pid_wait_until(30_in);
+  chassis.pid_speed_max_set(50);
+  chassis.pid_wait();
+
+  //Was -2.5 in
+  chassis.pid_drive_set(3.5_in, 80);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  // pros::delay(250);
+  intake_speed(127);
+  pros::delay(250);
+  intake_speed(-127);
+  outtake_up();
+  pros::delay(500);
+  intake_speed(-63);
+  //Was 3000 for delay
+  pros::delay(3500-500);
+
+  chassis.pid_drive_set(10_in, DRIVE_SPEED);
+  chassis.pid_wait_quick();
+
+  chassis.pid_turn_set(180_deg, TURN_SPEED);
+  chassis.pid_wait_quick();
+
+  chassis.pid_drive_set(72_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_swing_set(ez::RIGHT_SWING, 90_deg, SWING_SPEED, 20);
+  chassis.pid_wait_quick();
+
+  chassis.pid_drive_set(20_in, DRIVE_SPEED);
+  chassis.pid_wait();
 }
 
 // . . .
