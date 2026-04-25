@@ -1638,8 +1638,8 @@ void laz_mid_long_match_auton(){
 
   //Turn to face mid goals
   //Was 70 for speed
-  //Was 40_deg
-  chassis.pid_turn_set(131.5_deg, 60);
+  //Was 131.5_deg
+  chassis.pid_turn_set(133_deg, 60);
   chassis.pid_wait();
 
 
@@ -1820,7 +1820,7 @@ void laz_long_descore_quick_match(){
   chassis.pid_drive_set(13.5_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 65, 10);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, 55, 0);
   chassis.pid_wait();
 
   chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
@@ -1829,7 +1829,7 @@ void laz_long_descore_quick_match(){
   descore_down();
   pros::delay(250);
 
-  chassis.pid_drive_set(20_in, 65);
+  chassis.pid_drive_set(18_in, 65);
   chassis.pid_wait();
 }
 
@@ -1994,7 +1994,7 @@ void laz_long_descore_slow_match(){
   chassis.pid_drive_set(13.5_in, DRIVE_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 65, 10);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, 55, 0);
   chassis.pid_wait();
 
   chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
@@ -2003,7 +2003,7 @@ void laz_long_descore_slow_match(){
   descore_down();
   pros::delay(250);
 
-  chassis.pid_drive_set(20_in, 65);
+  chassis.pid_drive_set(18_in, 65);
   chassis.pid_wait();
 
 }
