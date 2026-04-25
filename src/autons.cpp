@@ -1737,7 +1737,8 @@ void laz_long_descore_quick_match(){
   // chassis.pid_wait();
 
   //Drive forward to match loader
-  chassis.pid_drive_set(33_in, 75, true);
+  //Was 33 for dist
+  chassis.pid_drive_set(34_in, 75, true);
   chassis.pid_wait();
 
   //Turn to face rake to match loader
@@ -1756,32 +1757,38 @@ void laz_long_descore_quick_match(){
 
   //Drive backward into match loader
   //Speed was 60
-  chassis.pid_drive_set(-24_in, 60);
+  //Dist was 24
+  chassis.pid_drive_set(-24_in, 50);
   chassis.pid_wait();
 
   pros::delay(100);
 
   //Drive further into match loader to fully seat rake in
-  chassis.pid_drive_set(-2_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-2_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
 
-  pros::delay(100);
+  // pros::delay(100);
 
   intake_speed(-127);
   pros::delay(250);
   intake_speed(127);
 
   //Perform shimmy to dislodge any jammed blocks in match loader
-  chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
-  chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
-  chassis.pid_drive_set(1_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
-  chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(2_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
+  // chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
+  // chassis.pid_drive_set(1_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
+  // chassis.pid_drive_set(-3_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
 
-  pros::delay(800);
+  //Commented out to reduce change of getting blue blocks
+  // pros::delay(800);
+
+  //Turn to face rake to match loader
+  chassis.pid_turn_set(0_deg, 60);
+  chassis.pid_wait();
 
   //Drive out of match loader
   chassis.pid_drive_set(10_in, DRIVE_SPEED);
@@ -1804,7 +1811,10 @@ void laz_long_descore_quick_match(){
 
   outtake_up();
   intake_speed(127);
-  pros::delay(3000);
+  pros::delay(1500);
+
+  //Used to have 3000 to score all blocks
+  // pros::delay(3000);
 
   chassis.pid_drive_set(-12_in, DRIVE_SPEED);
   // rake_down();
@@ -1817,7 +1827,8 @@ void laz_long_descore_quick_match(){
   chassis.pid_turn_set(45_deg, 50);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(13.5_in, DRIVE_SPEED, false);
+  //Was 13.5
+  chassis.pid_drive_set(12.5_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
   chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, 55, 0);
